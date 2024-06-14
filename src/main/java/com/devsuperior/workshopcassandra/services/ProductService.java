@@ -29,4 +29,9 @@ public class ProductService {
         return result.orElseThrow(() -> new ResourceNotFoundException("Id não encontrado"));
     }
 
+    public List<ProductDTO> findByDepartment(String department) {
+        List<Product> list = repository.findByDepartment(department);
+        return list.stream().map(x -> new ProductDTO(x)).collect(Collectors.toList());
+    }
+
 }
